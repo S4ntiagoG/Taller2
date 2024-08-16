@@ -32,6 +32,301 @@ public class App {
     }
 
 
+    //Algoritmo 1
+     public static int Calcular_saldo(int base, int total_recaudo, int total_retiros) {
+        try {
+            final int base_igualdad = 2000000; 
+            int saldo_taquilla = base + total_recaudo - total_retiros;
+    
+            // Aquí podrías agregar lógica basada en la variable base o base_igualdad
+            if (base == base_igualdad) 
+            {    
+                return saldo_taquilla;
+            } else 
+            
+            {
+                return -1;   
+            }
+    
+        
+        } catch (Exception e) {
+            
+            return -1; 
+        }    
+    }
+    
+    //Algoritmo 2 
+    public static String Calcular_tip (float valor_consumo) {
+
+        try {  
+            final float calcular_propina = 0.10f;
+            final float calcular_impuesto = 0.08f; 
+            float propina = 0 ;
+            float impuesto_comida = 0; 
+            float total_pagar = 0; 
+            
+            if (valor_consumo> 0) {
+                propina = valor_consumo * calcular_propina;
+                impuesto_comida = valor_consumo * calcular_impuesto;
+                total_pagar = valor_consumo + propina + impuesto_comida; 
+                
+                return "valor comida:" +" " +"$"+ valor_consumo + " - "+ "valor propina" + " " + "$"+ propina + " - " + 
+                    "valor impoconsumo" + " "+ "$"+  impuesto_comida + " - " + "total a pagar" + " "+ "$" + total_pagar;     
+            } 
+            
+            else {
+                
+                return "Error calculando consumo";
+            }
+        } 
+        catch (Exception e) { return "Error en la función Calcular_tip";
+           
+    }
+
+    }
+    
+    //Algoritmo 3 
+    public static int Obtener_puntos(int partidos_ganados, int partidos_perdidos, int partidos_empatados){
+        try {
+            final byte ganado = 3, perdio = 0, empatado = 1; 
+            byte victorias = 0, empates = 0, perdidas = 0;
+           
+             
+            if (partidos_empatados >= 0 && partidos_perdidos >= 0 && partidos_ganados>=0) { 
+                
+                victorias = (byte) (partidos_ganados*ganado);
+                empates = (byte) (partidos_empatados* empatado);
+                perdidas = (byte) (partidos_perdidos*perdio);
+                int puntos = victorias + empates + perdidas;
+                return puntos;   
+             }
+                    
+            else return -1;
+        
+        
+        } 
+        catch (Exception e) {
+            return -1;
+        }
+
+
+    }
+    //Algoritmo 4
+    public static float Calcular_definitiva(float nota_1, float nota_2, float nota_3, float nota_4, float nota_5, 
+                                            float porcentaje_1, float porcentaje_2, float porcentaje_3, float porcentaje_4, float porcentaje_5) {
+                                                
+        try {
+            float definitiva = 0;
+            float suma_porcentajes = 0; 
+
+        
+            if (nota_1 >= 0 && nota_1 <= 5 &&
+            nota_2 >= 0 && nota_2 <= 5 &&
+            nota_3 >= 0 && nota_3 <= 5 &&
+            nota_4 >= 0 && nota_4 <= 5 &&
+            nota_5 >= 0 && nota_5 <= 5) {
+            
+           
+                if (porcentaje_1 >= 0 && porcentaje_1 <= 1 &&
+                    porcentaje_2 >= 0 && porcentaje_2 <= 1 &&
+                    porcentaje_3 >= 0 && porcentaje_3 <= 1 &&
+                    porcentaje_4 >= 0 && porcentaje_4 <= 1 &&
+                    porcentaje_5 >= 0 && porcentaje_5 <= 1) {
+                    suma_porcentajes = porcentaje_1 + porcentaje_2 + porcentaje_3 + porcentaje_4 + porcentaje_5; 
+                        
+                        if (suma_porcentajes == 1) { 
+                        definitiva =  
+                        (nota_1 * porcentaje_1) +
+                        (nota_2 * porcentaje_2) +
+                        (nota_3 * porcentaje_3) +
+                        (nota_4 * porcentaje_4) +
+                        (nota_5 * porcentaje_5);
+
+                        }
+                        else return -1;  
+            }
+            else return -1; 
+        }
+
+            else return -1;
+        
+        return definitiva;
+    } 
+    catch (Exception e) 
+    {
+        return -1; 
+    }
+    }   
+    
+    //Algoritmo 5 
+    public static float Calcular_para_ganar (float not_1, float not_2, float not_3, float not_4, 
+    float porcen_1, float porcen_2, float porcen_3, float porcen_4, float porcen_5) {
+    
+        try {
+        float nota_faltante = 0;
+        final float nota_min = 3.0f;
+        if (not_1 >= 0 && not_1 <= 5 &&
+            not_2 >= 0 && not_2 <= 5 &&
+            not_3 >= 0 && not_3 <= 5 &&
+            not_4 >= 0 && not_4 <= 5) {
+
+            
+            if (porcen_1 >= 0 && porcen_1 <= 1 &&
+                porcen_2 >= 0 && porcen_2 <= 1 &&
+                porcen_3 >= 0 && porcen_3 <= 1 &&
+                porcen_4 >= 0 && porcen_4 <= 1 &&
+                porcen_5 >= 0 && porcen_5 <= 1) {
+
+                
+                float sumaPorcentajes = porcen_1 + porcen_2 + porcen_3 + porcen_4 + porcen_5;
+                
+                if (sumaPorcentajes == 1 ) {
+                      
+                float puntos_acumulados = 
+                    (not_1 * porcen_1) +
+                    (not_2 * porcen_2) +
+                    (not_3 * porcen_3) +
+                    (not_4 * porcen_4);
+
+                
+                nota_faltante = (nota_min - puntos_acumulados) / porcen_5;
+                }
+                
+                if (nota_faltante >= 0 && nota_faltante <= 5) {
+                    return nota_faltante;
+                } else {
+                    return -1;  
+                }
+            }
+        }
+        
+        return -1;  
+    } 
+    catch (Exception e) {
+        return -1;  
+    }
+    }
+    //Algoritmo 6 
+        public static float Calcular_salario(int horas_normales_lab, int horas_extras_dia, int horas_extras_noche, float valor_hora_normal){
+            try 
+            {
+                final float recargo_dia = 0.15f;
+                final float recargo_noche = 0.35f;  
+                float salario_total = 0; 
+                if (valor_hora_normal > 0 ) { 
+                    salario_total =  (horas_normales_lab * valor_hora_normal) + 
+                                     (horas_extras_dia * valor_hora_normal * recargo_dia) + 
+                                     (horas_extras_noche * valor_hora_normal * recargo_noche);  
+
+                    
+                } 
+                else { 
+                    return((int) (-1)); 
+                }
+            
+                return salario_total;
+            
+            } 
+            
+        
+            catch (Exception e) {
+                return((int) (-1)); 
+            }
+
+        } 
+//Algoritmo 7
+public static float Calcular_area_triangulo(float  base_tri, float altura_tri){
+    try {
+        final float un_medio = 0.5f;
+        float area_triangulo = 0; 
+            if (base_tri> 0 && altura_tri>0) {
+                area_triangulo = un_medio * base_tri * altura_tri;
+                return area_triangulo; 
+            } 
+            
+            else {
+                return -1; 
+            }
+
+
+
+    } 
+    catch (Exception e) {
+        return -1; 
+    }
+    }
+//Algoritmo 8
+public static float Calcular_perimetro_cuadrado(float lado_cuadrado){
+    try {
+        float perimetro = 0;
+        final byte para_calcular_area = 4;
+        if (lado_cuadrado> 0) {
+            perimetro = lado_cuadrado * para_calcular_area; 
+            
+            return perimetro; 
+        }
+        else return -1; 
+    
+    
+    } 
+    catch (Exception e) {
+        return -1; 
+    }
+}
+
+//Algortimo 9
+public static float Calcular_volumen_cilindro (float radi_base, float altura_cilin){
+    try {
+            final float pi = 3.1415927f; 
+            float volumen_cilindro = 0; 
+            if (radi_base> 0 && altura_cilin>0) {
+                volumen_cilindro = pi* (radi_base* radi_base) * altura_cilin; 
+                return volumen_cilindro; 
+
+
+            } else { return -1; 
+                
+            }
+        
+    } 
+    
+    catch (Exception e) {
+        return -1;
+    }
+
+}
+public static float  Calcular_area_circulo(float radio_ciruclo){
+    try {
+        float area_Cirulo = 0; 
+        final float pi_2 = 3.1415927f; 
+        if (radio_ciruclo>0) {
+            area_Cirulo = pi_2*(radio_ciruclo*radio_ciruclo);
+            
+            return area_Cirulo; 
+        } else 
+        {
+            return -1;             
+        }
+    } 
+    catch (Exception e) {
+        return -1; 
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+}
+
+    
+
     /*
      * 1. Diseñe un algoritmo e implemente la función Calcular_saldo que reciba
      * tres enteros: la base de dinero en la taquilla, el total de recaudos y
@@ -44,6 +339,7 @@ public class App {
      * Si hay algún error, retorne -1.
      */
 
+    
 
     /*
      * 2. Diseñe un algoritmo e implemente la función Calcular_tip que reciba
@@ -166,8 +462,3 @@ public class App {
      * 
      * Si hay algún error, retorne -1.
      */
-
-
-
-
-}
